@@ -9,18 +9,18 @@
             par2 = parseInt(par2);
             var result = 0;
         
-        if (operator == "-") {
-            result = par1 - par2;
-        }
-        else if (operator == "+") {
-            result = par1 + par2;
-            }
-        else if (operator == "*") {
-            result = par1 * par2;
-            }
-        else if (operator == "/") {
-            result = par1 / par2;
-        }
+        //if (operator == "-") {
+        //    result = par1 - par2;
+        //}
+        //else if (operator == "+") {
+        //    result = par1 + par2;
+        //    }
+        //else if (operator == "*") {
+        //    result = par1 * par2;
+        //    }
+        //else if (operator == "/") {
+        //    result = par1 / par2;
+        //}
             document.getElementById("result").innerHTML = result;
        }
       
@@ -32,6 +32,31 @@
 <body>
     <input type="text" id="Par1" />
     <input type="text" id="Par2" />
+    <br />
+    <input type="button" value="Topla" onclick="Hesaplama('%');" />
+    <input type="button" value="Çıkar" onclick="Hesaplama('sqrt');" />
+    <input type="button" value="Çarpma" onclick="Hesaplama('^2');" />
+    <input type="button" value="Bolme" onclick="Hesaplama('1/x');" />
+    <br />
+    <input type="button" value="Topla" onclick="Hesaplama('CE');" />
+    <input type="button" value="Çıkar" onclick="Hesaplama('C');" />
+    <input type="button" value="Çarpma" onclick="Hesaplama('');" />
+    <input type="button" value="Bolme" onclick="Hesaplama('/');" />
+    <br />
+    <input type="button" value="Topla" onclick="Hesaplama('+');" />
+    <input type="button" value="Çıkar" onclick="Hesaplama('-');" />
+    <input type="button" value="Çarpma" onclick="Hesaplama('*');" />
+    <input type="button" value="Bolme" onclick="Hesaplama('/');" />
+    <br />
+    <input type="button" value="Topla" onclick="Hesaplama('+');" />
+    <input type="button" value="Çıkar" onclick="Hesaplama('-');" />
+    <input type="button" value="Çarpma" onclick="Hesaplama('*');" />
+    <input type="button" value="Bolme" onclick="Hesaplama('/');" />
+    <br />
+    <input type="button" value="Topla" onclick="Hesaplama('+');" />
+    <input type="button" value="Çıkar" onclick="Hesaplama('-');" />
+    <input type="button" value="Çarpma" onclick="Hesaplama('*');" />
+    <input type="button" value="Bolme" onclick="Hesaplama('/');" />
     <br />
     <input type="button" value="Topla" onclick="Hesaplama('+');" />
     <input type="button" value="Çıkar" onclick="Hesaplama('-');" />
