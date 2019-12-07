@@ -14,29 +14,27 @@
                     var message = $("#Message").val();
 
                     if (name.length < 2 || name.length > 50) {
-                        alert("Canım, lütfen rice ediyorum adınızı 2 karakterden kısa 50den uzun yazmayınız")
+                        alert("Adınız 2 karakterden kısa 50den uzun olamaz");
                         return;
                     }
                     else if (surname.length < 2 || surname.length > 50) {
-                        alert("Soyadınız 2 karakterden kısa 50den uzun olamaz")
+                        alert("Soyadınız 2 karakterden kısa 50den uzun olamaz");
                         return;
                     }
                     else if (email.length < 6 || email.length > 345) {
-                        alert("Email 6 karakterden kısa 345den uzun olamaz")
+                        alert("Emailiniz 2 karakterden kısa 345 den uzun olamaz");
                         return;
-                        
                     }
-                    else if
-                        (!GuestBook.Helper.IsEmail(email)) {
-                        alert("Email adresi hatalı")
+                    else if (!GuestBook.Helper.IsEmail(email)) {
+                        alert("Email adresiniz hatalı");
                         return;
                     }
                     else if (message.length < 2 || message.length > 1024) {
-                        alert("Mesaj 2 karakterden kısa, 1024 karakterden uzun olamaz")
+                        alert("Mesajınız 2 karakterden kısa 1024 den uzun olamaz");
                         return;
                     }
-                    $('#GuestBook-Index-Form').hide();
-                    $('#GuestBook-Index-Sending').show();
+                    $("#GuestBook-Index-Form").hide();
+                    $("#GuestBook-Index-Sending").show();
 
                     var data = {
                         Name: name,
@@ -44,26 +42,63 @@
                         Email: email,
                         Message: message
                     };
-                    var json = JSON.stringify(data);
 
+                    var json = JSON.stringify(data);
                     $.ajax({
                         type: "POST",
-                        url: "GuestBook/SendAction",
+                        url: "/GuestBook/SendAction",
                         data: json,
                         success: GuestBook.Page.GuestBook.Index.Send_Callback,
                         error: GuestBook.Page.GuestBook.Index.Send_Callback_Error,
                         dataType: "json",
                         contentType:"application/json;charset=utf-8"
                     });
-
                 },
                 Send_Callback: function (result) {
-                    $('#GuestBook-Index-Sending').hide();
-                    $('#GuestBook-Index-Sent').show();
+                    $("#GuestBook-Index-Sending").hide();
+                    $("#GuestBook-Index-Sent").show();
                     console.log(result);
                 },
                 Send_Callback_Error: function (result) {
                     console.log(result);
+                }
+            },
+            Manage: {
+                Login: function () {
+                    var username = $("#Username").val();
+                    var password = $("#Password").val();
+
+                    if (username.length < 5 || username.length > 32) {
+                        alert("Kullanıcı adı hatalı.");
+                        return;
+                    }
+                    else if (password.length < 8 || password.length > 32) {
+                        alert("Şifre hatalı");
+                        return;
+                    }
+                    
+                    var data = {
+                        Username: username,
+                        Password: password
+                    }
+                    var json = JSON.stringify(data);
+                    $.ajax({
+                        type: "POST",
+                        url: "/GuestBook/LoginAction",
+                        data: json,
+                        success: GuestBook.Page.GuestBook.Manage.Login_Callback,
+                        error: GuestBook.Page.GuestBook.Manage.Login_Callback_Error,
+                        dataType: "json",
+                        contentType: "application/json;charset=utf-8"
+                    });
+                },
+                Login_Callback: function (result) {
+                    window.location.href = "/GuestBook/AdminDashboard";
+                   
+                },
+                Login_Callback_Error: function (result) {
+                    alert("Kullanıcı adı veya şifre hatalı.");
+                    
                 }
             }
         }
@@ -72,6 +107,6 @@
         IsEmail: function (email) {
             var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
             return regex.test(email);
-        }
+        }        
     }
 }
