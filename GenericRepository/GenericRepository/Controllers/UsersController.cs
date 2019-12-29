@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -11,16 +11,23 @@ namespace GenericRepository.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly Interfaces.IUserRepository _userRepository;
-        public UsersController(Interfaces.IUserRepository userRepository)
+        private readonly Interfaces.IUnitOfWork _unitOfWork;
+        public UsersController(Interfaces.IUnitOfWork unitOfWork)
         {
-            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
         }
         [HttpGet]
         public IActionResult GetAll()
         {
-            var users = _userRepository.GetAll();
+            var users = _unitOfWork.UserRepository.GetAll();
             return new JsonResult(users);
+        }
+        [HttpPost]
+        public IActionResult Insert([FromBody] Models.User user)
+        {
+            _unitOfWork.UserRepository.Insert(user);
+            _unitOfWork.Complete();
+            return new JsonResult(user);
         }
     }
 }

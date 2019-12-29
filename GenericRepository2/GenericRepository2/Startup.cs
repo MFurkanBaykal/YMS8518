@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace GenericRepository
+namespace GenericRepository2
 {
     public class Startup
     {
@@ -26,9 +26,8 @@ namespace GenericRepository
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDbContext<DataContext>(a => a.UseSqlServer("Server=localhost;User Id=sa;Password=123;Database=YMS8518_Generic;"));
+            services.AddDbContext<DataContext>(a => a.UseSqlServer("Server=localhost;User Id=sa;Password=123;Database=YMS8518_Generic2;"));
             services.AddScoped<Interfaces.IUnitOfWork, Services.UnitOfWork>();
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

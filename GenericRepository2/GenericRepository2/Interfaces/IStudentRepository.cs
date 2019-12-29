@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GenericRepository.Interfaces
+namespace GenericRepository2.Interfaces
 {
-    public interface IBookRepository : IRepository<Models.Book>
+    public interface IStudentRepository : IRepository<Models.Student>
     {
 
     }

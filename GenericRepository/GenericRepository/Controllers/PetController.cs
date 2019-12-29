@@ -9,25 +9,25 @@ namespace GenericRepository.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookController : ControllerBase
+    public class PetController : ControllerBase
     {
         private readonly Interfaces.IUnitOfWork _unitOfWork;
-        public BookController(Interfaces.IUnitOfWork unitOfWork)
+        public PetController(Interfaces.IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;   
+            _unitOfWork = unitOfWork;
         }
         [HttpGet]
         public IActionResult GetAll()
         {
-            var users = _unitOfWork.BookRepository.GetAll();
+            var users = _unitOfWork.PetRepository.GetAll();
             return new JsonResult(users);
         }
         [HttpPost]
-        public IActionResult Insert([FromBody] Models.Book book)
+        public IActionResult Insert([FromBody] Models.Pet pet)
         {
-            _unitOfWork.BookRepository.Insert(book);
+            _unitOfWork.PetRepository.Insert(pet);
             _unitOfWork.Complete();
-            return new JsonResult(book);
+            return new JsonResult(pet);
         }
     }
 }
